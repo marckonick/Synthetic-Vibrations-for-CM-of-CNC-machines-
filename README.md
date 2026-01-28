@@ -7,7 +7,9 @@ The limited diversity and number of examples of faulty data are common problems 
 ## Files Description
 
 - Functions_FeatureExtraction.py            - Functions for performing feature extraction spectrograms. 
-- Main_FeatureExtraction_CNC.py             - Can be configured to perform various extraction of various features (FFT, Mel                                                       spectrograms, Mel Energy, STFT). By default set mel spectrograms.
+- Main_FeatureExtraction_CNC.py             - Can be configured to perform various extraction of various features (FFT, Mel Spectrograms, Mel Energy, STFT). Paper uses only Mel Spectrogram.
+- TorchClassificationModels.py              - Torch implementaion of NNs for state classification.
+- Main_Classification_Model.py              - Script for training the condiiton monitoring model. For the paper the script used the following arguments --focal_loss --one_axis 
 - 
 
 
