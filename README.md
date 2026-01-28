@@ -6,6 +6,9 @@ The limited diversity and number of examples of faulty data are common problems 
 
 ## Files Description
 
-- main_classification.py            - training model. Can be used for different features. Feature changes requres change in model configuration. 
-- script_test_model.py              - script for testing saved models
+- Functions_FeatureExtraction.py            - Functions for performing feature extraction spectrograms. 
+- Main_FeatureExtraction_CNC.py             - Can be configured to perform various extraction of various features (FFT, Mel                                                       spectrograms, Mel Energy, STFT). By default set mel spectrograms.
+- 
 
+
+                                              
