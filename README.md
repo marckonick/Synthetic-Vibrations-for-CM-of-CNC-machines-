@@ -4,9 +4,13 @@ The official repository for the paper "Towards Better Synthetic Vibrations for C
 ## Description 
 The limited diversity and number of examples of faulty data are common problems during the development of reliable and robust condition monitor-ing systems in many industries. To address these limitations, this paper proposes a hybrid condition monitoring framework that combines physi-cally motivated signal preprocessing, deep learning–based fault classifica-tion, and diffusion-based synthetic vibration generation. After wavelet-based denoising, compact time–frequency representations are obtained via log-mel-spectrograms and used as inputs to a lightweight neural-network-based classifier for binary fault detection. To enrich scarce faulty data, a conditional diffusion model with a one-dimensional U-Net backbone is developed for vibration signal synthesis, explicitly conditioned on ma-chining operations. To improve realism and physical plausibility of gener-ated signals, an additional mel-domain silence floor regularization loss is introduced, constraining low-energy spectral regions based on operation-specific statistics. The proposed approach is evaluated on an open industri-al dataset comprising two years of vibration recordings from three CNC milling machines. Experiments are conducted in a cross-machine setting, where models are trained on two machines and tested on a previously un-seen one across eleven tool operations. Results demonstrate that the pro-posed synthetic data generation significantly improves training stability and fault detection performance, while quantitative Dynamic Time Warp-ing–based analysis confirms a high degree of similarity between real and generated vibrations.
 
+## Dataset info 
+
+The dataset can be downloaded from the following repository - https://github.com/boschresearch/CNC_Machining.
+
 ## Files Description
 
-- Functions_FeatureExtraction.py            - Functions for performing feature extraction spectrograms. 
+- Functions_FeatureExtraction.py            - Functions for performing feature extraction spectrograms. Check the path to the data folder -  CNC_Machining-main which should be dowloaded first (see the previous section).  
 - Main_FeatureExtraction_CNC.py             - Can be configured to perform various extraction of various features (FFT, Mel Spectrograms, Mel Energy, STFT). Paper uses only Mel Spectrogram.
 - TorchClassificationModels.py              - Torch implementaion of NNs for state classification.
 - Main_Classification_Model.py              - Script for training the condiiton monitoring model. For the paper the script used the following arguments --focal_loss --one_axis 
