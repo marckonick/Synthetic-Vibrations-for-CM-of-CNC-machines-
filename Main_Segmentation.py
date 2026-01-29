@@ -1,10 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jul 31 14:40:05 2025
-
-@author: nikola.markovic
-"""
-
 import os
 import sys 
 from pathlib import Path
@@ -274,5 +267,6 @@ print("dataset std:", x.std())
 print("rms median:", np.median(rms_per_sample))
 print("rms p90:", np.percentile(rms_per_sample, 90))
 print("abs max:", np.max(np.abs(x)))
+
 
     
