@@ -1,11 +1,4 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Mon Aug  4 16:58:28 2025
-
-@author: nikola.markovic
-"""
-
-# -*- coding: utf-8 -*-
 import torch
 import torch.nn as nn
 import torch.utils.data as data
@@ -279,4 +272,5 @@ class DNN_Model(nn.Module):
  
     
  
+
     
