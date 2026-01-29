@@ -21,6 +21,7 @@ Codes for Condition Monitoring
 
 Codes for Vibration Generation
 - Main_Segmentation.py                      - Prepare data for difussion model training. Load -> normalize -> denoise. Also saves per operation statistics for normalization
-
+- DiffusionModel.py                         - Definition of the U-Net diffusion model.
+- Main_Diffusion_Bosch.py                   - Main training script of the diffusion model.
 
                                               
