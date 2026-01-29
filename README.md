@@ -16,6 +16,8 @@ Codes for Condition Monitoring
 - Main_FeatureExtraction_CNC.py             - Can be configured to perform various extraction of various features (FFT, Mel Spectrograms, Mel Energy, STFT). Paper uses only Mel Spectrogram.
 - TorchClassificationModels.py              - Torch implementaion of NNs for state classification.
 - Main_Classification_Model.py              - Script for training the condiiton monitoring model. For the paper the script used the following arguments --focal_loss --one_axis
+- Test_Classification_Model.py              - Load and test models. Should be run with arguments --one_axis --focal_loss
+
 
 Codes for Vibration Generation
 - Main_Segmentation.py                      - Prepare data for difussion model training. Load -> normalize -> denoise. Also saves per operation statistics for normalization
