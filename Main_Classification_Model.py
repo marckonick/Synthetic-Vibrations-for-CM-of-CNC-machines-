@@ -61,9 +61,10 @@ def get_data(machines, process_names, test_d, add_data = None):
     batch_size = args.batch_size
     use_dnn = args.use_dnn
    
+    # this is only viable if one_axis is true 
     if add_data is not None:
-       print(f"x_v je {x_v.shape}") 
-       print(f"y_v je {y_v.shape}") 
+       print(f"x_v has shape {x_v.shape}") 
+       print(f"y_v has shape {y_v.shape}") 
         
        x_v = np.concatenate((x_v, add_data), 0) 
        y_v = np.concatenate((y_v, np.ones(len(add_data))), 0)  
@@ -87,6 +88,24 @@ def get_data(machines, process_names, test_d, add_data = None):
     
     return x_v, y_v, cnn_in_layers
         
+def get_synth_data_():
+    
+    
+    if selected_feature == 'MelLog':
+        x_add = np.load("x_samples_diffusion_MelLog.npy") 
+    elif selected_feature == 'MEL_ENERGY':
+        x_add = FEF.extract_melener_features_short(x_add, win_len = 128, hop_l = 64, frames = 2, power = 2.0, n_mels = 64)
+        x_add = x_add[:,None,:]
+    elif selected_feature == 'FFT':
+        x_add = np.load("x_samples_diffusion_FFT.npy")
+    elif selected_feature == 'TIME':
+        x_add = np.load("x_ts_aug.npy")
+        
+    #x_add = x_add[:,None,:]
+    
+    print(f"x_add size: {x_add.shape}")
+    
+    return x_add 
     
 def compute_test():
     
@@ -141,25 +160,7 @@ def compute_test_focal(decision_treshold):
     print(np.array_str(cm_norm, precision=4, suppress_small=True))
     print('\n')
 
-    
-def get_synth_data_():
-    
-    
-    if selected_feature == 'MelLog':
-        x_add = np.load("x_samples_diffusion_MelLog.npy") 
-    elif selected_feature == 'MEL_ENERGY':
-        x_add = FEF.extract_melener_features_short(x_add, win_len = 128, hop_l = 64, frames = 2, power = 2.0, n_mels = 64)
-        x_add = x_add[:,None,:]
-    elif selected_feature == 'FFT':
-        x_add = np.load("x_samples_diffusion_FFT.npy")
-    elif selected_feature == 'TIME':
-        x_add = np.load("x_ts_aug.npy")
-        
-    #x_add = x_add[:,None,:]
-    
-    print(f"x_add size: {x_add.shape}")
-    
-    return x_add    
+       
     
 args = parser.parse_args()
 selected_feature = args.selected_feature
@@ -259,7 +260,7 @@ for epoch in range(1, n_epochs + 1):
     print(f" Epoch {epoch}/{n_epochs}, loss = {float(loss_train/len(x_train))}, lr = {optimizer.param_groups[0]['lr']:.6f}")
 
     
-    if epoch > 1:
+    if epoch % 10 == 0:
         if args.focal_loss:
             compute_test_focal(decision_treshold)
         else:     
@@ -269,7 +270,7 @@ for epoch in range(1, n_epochs + 1):
     #if epoch > 122:  
     #    torch.save(model.state_dict(), f"SavedClassificationModels/vgg_model_{selected_feature}_{add_string}_{machines[0]}_{machines[1]}_epoch_{epoch}.pth")    
     
-    if epoch % 10 == 0:
+    if epoch % 30 == 0:
        for pns in process_names_test:
              x_test, y_test, _ = get_data(machines_test, [pns], test_d = True) #WATCH THIS LINE 
              print(f"\nResults on OP {pns}")
